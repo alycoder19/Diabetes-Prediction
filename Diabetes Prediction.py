@@ -2,11 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from sklearn.model_selection import train_test_split ##تقسيم البيانات للتدريب و الاختبار
+from sklearn.model_selection import train_test_split 
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report ## قياس كفائة البيانات
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report 
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import LogisticRegression ##
+from sklearn.linear_model import LogisticRegression 
 
 df= pd.read_csv(r"C:\Users\org\Desktop\NEW\Diabetes_prediction.csv")
 print(df.head(7))
