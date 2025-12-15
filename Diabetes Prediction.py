@@ -2,17 +2,17 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split ##تقسيم البيانات للتدريب و الاختبار
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report ## قياس كفائة البيانات
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression ##
 
-df = pd.read_csv(r"C:\Users\org\Desktop\NEW\Diabetes_prediction.csv")
+df= pd.read_csv(r"C:\Users\org\Desktop\NEW\Diabetes_prediction.csv")
 print(df.head(7))
 print(df.shape)
 
-print("\n DATA CLEANING START\n")
+print("\n DATA CLEANING")
 
 print(df.info())
 print(df.isnull().sum())
@@ -25,6 +25,20 @@ if duplicates > 0:
     df = df.drop_duplicates()
 
 print(df.describe())
+
+
+
+sns.heatmap(df.corr(),annot=True,fmt='0.2f',linewidths=.5)
+plt.show()
+
+sns.countplot(x='Diagnosis',data=df,palette=['r','k'])
+plt.show()
+
+sns.boxenplot(df.Age)
+plt.show()
+
+
+
 
 df["y"] = df["Diagnosis"]     
 df = df.drop("Diagnosis", axis=1)
@@ -66,12 +80,12 @@ for name, model in models.items():
     plt.show()
 
 
-print("\n\nMODEL ACCURACIES ")
+print("\n\nModel Accuracies \n \n")
 for name, acc in accuracies.items():
     print(f"{name}: {acc:.4f}")
 
 plt.figure(figsize=(7, 4))
-plt.bar(list(accuracies.keys()), list(accuracies.values()))
+plt.bar(list(accuracies.keys()), list(accuracies.values()) ,color=['red','black'])
 plt.title("Model Accuracy Comparison")
 plt.ylabel("Accuracy")
 plt.ylim(0, 1)
